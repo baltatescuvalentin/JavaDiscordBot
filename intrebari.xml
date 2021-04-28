@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class>
+  <subject q = "1">
+    <question>Ce faci?</question>
+    <answer>Bine, tu ce faci?</answer>
+  </subject>
+
+  <subject q = "2">
+    <question>Cum merge facultatea?</question>
+    <answer>Destul de bine, acum am un proiect la java!</answer>
+  </subject>
+
+  <subject q = "3">
+    <question>twitter</question>
+    <answer>https://twitter.com/bureeeeeeeeeee</answer>
+  </subject>
+
+  <subject q = "4">
+    <question>La ce facultate esti?</question>
+    <answer>https://www.info.uaic.ro/</answer>
+  </subject>
+
+  <subject q = "5">
+    <question>Ce face gabu?</question>
+    <answer>milsuge</answer>
+  </subject>
+
+  <subject q = "6">
+    <question>cum e baiatu?</question>
+    <answer>baiatu e nebun KEKW</answer>
+  </subject>
+
+  <subject q = "7">
+    <question>cum trage bure?</question>
+    <answer>https://clips.twitch.tv/StrangeSmoothSamosaDogFace-mGxtitqkxISc2qk3</answer>
+  </subject>
+
+  <subject q = "8">
+    <question>i-ai dat cap?</question>
+    <answer>I-am dat: https://twitter.com/GumzhyFPS/status/1383906615506604033?s=20</answer>
+  </subject>
+
+  <subject q = "9">
+    <question>tableflip</question>
+    <answer>/tableflip</answer>
+  </subject>
+
+</class>

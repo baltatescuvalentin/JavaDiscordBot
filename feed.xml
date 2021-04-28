@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class>
+  <subjects type = "feed">
+    <subject>Java</subject>
+    <url>https://www.javacodegeeks.com/feed</url>
+  </subjects>
+
+  <subjects type = "feed">
+    <subject>CSS</subject>
+    <url>https://css-weekly.com/feed/</url>
+  </subjects>
+
+  <subjects type = "feed">
+    <subject>PHP</subject>
+    <url>https://phpmagazine.net/feed</url>
+  </subjects>
+
+  <subjects type = "feed">
+    <subject>C++</subject>
+    <url>https://devblogs.microsoft.com/cppblog/feed/</url>
+  </subjects>
+
+
+  <subjects type = "feed">
+    <subject>Linux</subject>
+    <url>https://www.linux-magazine.com/rss/feed/lmi_full</url>
+  </subjects>
+
+
+  <subjects type = "feed">
+    <subject>C</subject>
+    <url>http://c-for-dummies.com/blog/?feed=rss2</url>
+  </subjects>
+  http://c-for-dummies.com/blog/?feed=rss2
+
+</class>
