@@ -134,6 +134,9 @@ public class Feed implements ICommand {
             info.addField("Utilizare", "Folositi altceva precum: " + this.topics, false);
             channel.sendMessage(info.build()).queue();
         }
+        
+        this.exista = true;
+        
     }
 
 
