@@ -31,6 +31,10 @@
     <subject>C</subject>
     <url>http://c-for-dummies.com/blog/?feed=rss2</url>
   </subjects>
-  http://c-for-dummies.com/blog/?feed=rss2
+
+  <subjects type = "feed">
+    <subject>news</subject>
+    <url>http://rss.cnn.com/rss/edition_world.rss</url>
+  </subjects>
 
 </class>

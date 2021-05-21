@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class>
+  <subject q = "0">
+    <question>Cum se concateneaza 2 siruri</question>
+    <answer1>String++String</answer1>
+    <answer2>String+String</answer2>
+    <answer3>String.String</answer3>
+    <answer4>StringString</answer4>
+    <correct>2</correct>
+  </subject>
+
+  <subject q = "1">
+    <question>Care dintre urmatoarele este un tag HTML</question>
+    <answer1>body</answer1>
+    <answer2>int</answer2>
+    <answer3>super</answer3>
+    <answer4>cd</answer4>
+    <correct>1</correct>
+  </subject>
+
+  <subject q = "2">
+    <question>Care este comanda care aplica schimbarile facute in baza de date</question>
+    <answer1>do</answer1>
+    <answer2>execute</answer2>
+    <answer3>run</answer3>
+    <answer4>commit</answer4>
+    <correct>4</correct>
+  </subject>
+
+  <subject q = "3">
+    <question>Ce fel de evaluare este specifica limbajului Haskell</question>
+    <answer1>Evaluare lenesa</answer1>
+    <answer2>Evaluarea vioaie</answer2>
+    <answer3>Evaluare inversa</answer3>
+    <answer4>Evaluare pas-cu-pas</answer4>
+    <correct>1</correct>
+  </subject>
+
+  <subject q = "4">
+    <question>Ce faci?</question>
+    <answer1>Bine, tu ce faci?</answer1>
+    <answer2>Bine, tu ce faci?</answer2>
+    <answer3>Bine, tu ce faci?</answer3>
+    <answer4>Bine, tu ce faci?</answer4>
+    <correct>2</correct>
+  </subject>
+
+  <subject q = "5">
+    <question>Ce faci?</question>
+    <answer1>Bine, tu ce faci?</answer1>
+    <answer2>Bine, tu ce faci?</answer2>
+    <answer3>Bine, tu ce faci?</answer3>
+    <answer4>Bine, tu ce faci?</answer4>
+    <correct>2</correct>
+  </subject>
+
+  <subject q = "6">
+    <question>Ce faci?</question>
+    <answer1>Bine, tu ce faci?</answer1>
+    <answer2>Bine, tu ce faci?</answer2>
+    <answer3>Bine, tu ce faci?</answer3>
+    <answer4>Bine, tu ce faci?</answer4>
+    <correct>2</correct>
+  </subject>
+
+  <subject q = "7">
+    <question>Ce faci?</question>
+    <answer1>Bine, tu ce faci?</answer1>
+    <answer2>Bine, tu ce faci?</answer2>
+    <answer3>Bine, tu ce faci?</answer3>
+    <answer4>Bine, tu ce faci?</answer4>
+    <correct>2</correct>
+  </subject>
+
+  <subject q = "8">
+    <question>Ce faci?</question>
+    <answer1>Bine, tu ce faci?</answer1>
+    <answer2>Bine, tu ce faci?</answer2>
+    <answer3>Bine, tu ce faci?</answer3>
+    <answer4>Bine, tu ce faci?</answer4>
+    <correct>2</correct>
+  </subject>
+
+  <subject q = "9">
+    <question>Ce faci?</question>
+    <answer1>Bine, tu ce faci?</answer1>
+    <answer2>Bine, tu ce faci?</answer2>
+    <answer3>Bine, tu ce faci?</answer3>
+    <answer4>Bine, tu ce faci?</answer4>
+    <correct>2</correct>
+  </subject>
+
+</class>

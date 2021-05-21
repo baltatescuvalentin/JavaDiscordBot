@@ -1,3 +1,4 @@
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -10,7 +11,9 @@ import java.util.EnumSet;
 public class Main {
     public static void main(String[] args) throws LoginException {
 
-        JDA jda = JDABuilder.createDefault("ODM2NjAxMTM1MjA0MTM5MDQ4.YIgXhQ.dyQgiLy3IfQZSUUSesEerkskuiw",
+        EventWaiter waiter = new EventWaiter();
+
+        JDA jda = JDABuilder.createDefault("",
                                            GatewayIntent.GUILD_MEMBERS,
                                            GatewayIntent.GUILD_MESSAGES,
                                            GatewayIntent.GUILD_VOICE_STATES).disableCache(EnumSet.of(
@@ -18,7 +21,7 @@ public class Main {
                                             CacheFlag.ACTIVITY,
                                             CacheFlag.EMOTE)
                                                                                          ).enableCache(CacheFlag.VOICE_STATE)
-                                            .addEventListeners(new Listener())
+                                            .addEventListeners(new Listener(waiter),waiter)
                                             .setActivity(Activity.playing("with his brain..."))
                                             .build();
 

@@ -10,8 +10,8 @@ public class Helps implements ICommand {
         final TextChannel channel = ctx.getChannel();
 
         CommandManager comenzi;
-        comenzi = new CommandManager();
-        List<ICommand> cmds = comenzi.getCommands();
+        //comenzi = new CommandManager();
+        List<ICommand> cmds = CommandManager.getCommands();
 
         EmbedBuilder info = new EmbedBuilder();
         info.setTitle("Help");

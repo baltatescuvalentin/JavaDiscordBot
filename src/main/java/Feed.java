@@ -22,7 +22,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class Feed implements ICommand {
+
+import org.jsoup.Jsoup;
+//import org.apache.commons.lang.StringEscapeUtils;
+
+
+public class  Feed implements ICommand {
 
     private String subject;
     private int numberOf;
@@ -89,6 +94,7 @@ public class Feed implements ICommand {
         if(this.exista == true) {
 
             boolean ok = false;
+
             try {
 
                 URL feedUrl = new URL(this.subject);
@@ -103,8 +109,8 @@ public class Feed implements ICommand {
                     info.setTitle(entry.getTitle());
                     info.setDescription(entry.getAuthor());
                     String target = entry.getDescription().getValue();
-                    target = target.replaceAll("\\<.*?\\>", "");
-                    target = target.replaceAll(" &#8594;", "");
+                    //target = target.replaceAll("\\<.*?\\>", "");
+                    target = Jsoup.parse(target).text();
                     info.addField("Descriere", target, false);
                     info.addField("URL", entry.getLink(), false);
                     info.setColor(0xffffff);
@@ -130,10 +136,11 @@ public class Feed implements ICommand {
         } else {
             EmbedBuilder info = new EmbedBuilder();
             info.setTitle("Comanda gresita");
-            info.setDescription("Ati introdus un subiect gresit!");
+            info.setDescription("Ati introdus un subiect gresit sau niciun subiect!");
             info.addField("Utilizare", "Folositi altceva precum: " + this.topics, false);
             channel.sendMessage(info.build()).queue();
         }
+        this.exista = true;
     }
 
 
