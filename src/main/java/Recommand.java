@@ -51,7 +51,7 @@ public class Recommand implements ICommand{
         try {
 
             Connection connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/questionsdb", "root", "Varsator123B");
+                .getConnection("jdbc:mysql://localhost:3306/questionsdb", "root", "");
 
             Statement statement = connection.createStatement();
             String sursa = "test";
@@ -97,7 +97,7 @@ public class Recommand implements ICommand{
         try {
 
             Connection connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/questionsdb", "root", "Varsator123B");
+                .getConnection("jdbc:mysql://localhost:3306/questionsdb", "root", "");
 
             Statement statement = connection.createStatement();
 
