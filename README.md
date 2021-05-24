@@ -1,5 +1,5 @@
   # JavaDiscordBot
-  Discord Bot facut cu JDA(Java Discord API) de Baltatescu Valentin-Constantin.
+  Discord Bot facut cu JDA(Java Discord API) de Baltatescu Valentin-Constantin - FII 2B1
 
   Acest bot este creat astfel incat sa primeasca comenzi in chat si daca acesta stie sa le trateze va oferi anumite output-uri. 
   Comenzile date bot-ului trebuie sa aiba un format specific astfel incat acesta sa le inteleaga. Pentru aceasta user-ul va trimite un mesaj de forma !comanda argument1..n in functie de tipul comenzii.
@@ -20,9 +20,9 @@
   
   ![image](https://user-images.githubusercontent.com/75161284/119343519-3c27df00-bc9f-11eb-84e1-d672a376dd0d.png)
   
-  A mai fost implementat si o modalitatea de a asculta muzica cu ajutor-ul bot-ului dar aceasta cuprinde mai multe componente. Prima ar fi libraria "lavaplayer" recomandata de developerii de la JDA care trebuie sa contina 4 clase specifice pentru a prelua link-ul de la platforma, sa realizeze conexiunea audio, sa realizeze coada pentru request-urile cu link-uri si sa transmita sunet audio. Totusi pentru a putea folosi aceste facilitati trebuie ca bot-ul sa se conecteze la un canal de "voce" unde acesta va pune melodiile, va gestiona coada si le va opri, acestea fiind: !join, !leave, !next, !play, !stop care se folosesc de clasele implementate continand libraria "lavaplayer". Aceste comenzi pot fi demonstrate doar utilizand bot-ul.
+  A mai fost implementat si o modalitatea de a asculta muzica cu ajutor-ul bot-ului dar aceasta cuprinde mai multe componente. Prima ar fi libraria "lavaplayer" recomandata de developerii de la JDA care trebuie sa contina clase specifice pentru a trata link-ul de la platforma, sa realizeze conexiunea audio, sa realizeze coada pentru request-urile cu link-uri si sa transmita sunet audio. Totusi pentru a putea folosi aceste facilitati trebuie ca bot-ul sa se conecteze la un canal de "voce" unde acesta va pune melodiile, va gestiona coada si le va opri, acestea fiind: !join, !leave, !next, !play, !stop care se folosesc de clasele implementate continand libraria "lavaplayer". Aceste comenzi pot fi demonstrate doar utilizand bot-ul.
   
-  O comanda pentru divertisment este cea de !meme care returneaza o gluma aleatoare preluata de pe un site. Aceasta gluma este preluata prin intermediul unui JSON care are anumite caracteristici, site-ul API-ului fiind acesta: https://meme-api.herokuapp.com/gimme . Astept preluand JSON-ul din API si luand caracteristicile care ne intereseaza adica titlul si URL-ul imaginii care sunt pune intr-un element Embed.
+  O comanda pentru divertisment este cea de !meme care returneaza o gluma aleatoare preluata de pe un site. Aceasta gluma este preluata prin intermediul unui JSON care are anumite caracteristici, site-ul API-ului fiind acesta: https://meme-api.herokuapp.com/gimme ,preluand JSON-ul din API si luand caracteristicile care ne intereseaza adica titlul si URL-ul imaginii care sunt pune intr-un element Embed.
   
   ![image](https://user-images.githubusercontent.com/75161284/119344916-ebb18100-bca0-11eb-8b98-81d9b0e370ca.png)
   
