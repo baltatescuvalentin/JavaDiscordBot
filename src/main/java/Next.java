@@ -37,6 +37,10 @@ public class Next implements ICommand {
         }
 
         musicManager.scheduler.nextTrack();
+        if(audioPlayer.getPlayingTrack() == null){
+            channel.sendMessage("Nu exista melodie in coada!").queue();
+            return;
+        }
         channel.sendMessage("Pornim urmatoarea melodie: `" + audioPlayer.getPlayingTrack().getInfo().title + "` by `" + audioPlayer.getPlayingTrack().getInfo().author + "`").queue();
     }
 

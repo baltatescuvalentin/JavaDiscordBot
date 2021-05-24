@@ -1,15 +1,10 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Date;
 import java.net.URL;
-import java.io.InputStreamReader;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
@@ -21,10 +16,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-
 import org.jsoup.Jsoup;
-//import org.apache.commons.lang.StringEscapeUtils;
 
 
 public class  Feed implements ICommand {
@@ -129,8 +121,8 @@ public class  Feed implements ICommand {
 
             if (!ok) {
                 System.out.println();
-                System.out.println("FeedReader reads and prints any RSS/Atom feed type.");
-                System.out.println("The first parameter must be the URL of the feed to read.");
+                System.out.println("FeedReader care citeste 'feed' de tipul RSS/Atom.");
+                System.out.println("Primul parametru este URL-ul.");
                 System.out.println();
             }
         } else {
@@ -140,13 +132,7 @@ public class  Feed implements ICommand {
             info.addField("Utilizare", "Folositi altceva precum: " + this.topics, false);
             channel.sendMessage(info.build()).queue();
         }
-<<<<<<< HEAD
         this.exista = true;
-=======
-        
-        this.exista = true;
-        
->>>>>>> cc6b7ae20dd4dc31b4dc954746d75a48b8044d93
     }
 
 
@@ -157,6 +143,6 @@ public class  Feed implements ICommand {
 
     @Override
     public String getHelp() {
-        return "Ofera informatii despre ultimele postari legate de un subiect dat ca argument.";
+        return "Ofera informatii despre postarile legate de un subiect dat ca argument. Eg: !feed c++ 1";
     }
 }

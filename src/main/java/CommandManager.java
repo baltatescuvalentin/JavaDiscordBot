@@ -25,6 +25,7 @@ public class CommandManager {
         addCommand(new Stop());
         addCommand(new Quiz(waiter));
         addCommand(new Slots());
+        addCommand(new Recommand());
     }
 
     private void addCommand(ICommand cmd) {

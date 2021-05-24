@@ -13,7 +13,7 @@ public class Main {
 
         EventWaiter waiter = new EventWaiter();
 
-        JDA jda = JDABuilder.createDefault("",
+        JDA jda = JDABuilder.createDefault("ODM2NjAxMTM1MjA0MTM5MDQ4.YIgXhQ.cKCp6tEbPYuEPdAoztmiX7uB-R0",
                                            GatewayIntent.GUILD_MEMBERS,
                                            GatewayIntent.GUILD_MESSAGES,
                                            GatewayIntent.GUILD_VOICE_STATES).disableCache(EnumSet.of(
@@ -22,7 +22,7 @@ public class Main {
                                             CacheFlag.EMOTE)
                                                                                          ).enableCache(CacheFlag.VOICE_STATE)
                                             .addEventListeners(new Listener(waiter),waiter)
-                                            .setActivity(Activity.playing("with his brain..."))
+                                            .setActivity(Activity.playing("with typing !help in chat"))
                                             .build();
 
     }

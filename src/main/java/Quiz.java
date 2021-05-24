@@ -1,36 +1,20 @@
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
-import com.jagrosh.jdautilities.command.Command;
-import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.MessageReaction;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 public class Quiz implements ICommand {
     
     private EmbedBuilder info;
     private String code;
     private final EventWaiter waiter;
+    private String source;
 
     public Quiz(EventWaiter waiter){
         this.waiter = waiter;
@@ -40,48 +24,50 @@ public class Quiz implements ICommand {
 
         final TextChannel channel = ctx.getChannel();
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
 
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            Connection connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/questionsdb", "root", "Varsator123B");
 
-            Document document = builder.parse(new File("quiz.xml"));
+            Statement statement = connection.createStatement();
 
-            document.getDocumentElement().normalize();
+            ResultSet resultSet = statement.executeQuery("select * from quiz");
 
-            NodeList subiect = document.getElementsByTagName("subject");
+            int count = 0;
+            while(resultSet.next()){
+                count++;
+            }
 
             Random rand = new Random();
-            int rnd = rand.nextInt(subiect.getLength());
+            int rnd = rand.nextInt(count);
+            System.out.println("Numarul intrebarii: " + rnd);
             String numberQ = Integer.toString(rnd);
 
-            for (int i = 0; i < subiect.getLength(); i++) {
-                Node sub = subiect.item(i);
-                if (sub.getNodeType() == Node.ELEMENT_NODE) {
-                    Element subInferior = (Element) sub;
-                    String id = subInferior.getAttribute("q");
-                    //System.out.println(id + " " + numberQ);
-                    if(id.equals(numberQ)) {
-                        info = new EmbedBuilder();
-                        info.setTitle("Quiz");
-                        info.setDescription("Raspunde la intrebare trimitand raspunsul corect. Eg: 2");
-                        String subiectcautat = subInferior.getElementsByTagName("question").item(0).getTextContent();
-                        code = subInferior.getElementsByTagName("correct").item(0).getTextContent();
-                        info.addField("Intrebare", subiectcautat, false);
-                        for(int j = 1; j <= 4; j++){
-                            subiectcautat = subInferior.getElementsByTagName("answer" + Integer.toString(j)).item(0).getTextContent();
-                            info.addField("Intrebarea numarul " + Integer.toString(j), Integer.toString(j) + ")" +subiectcautat, false);
-                        }
-                        info.setColor(0xffffff);
+            resultSet = statement.executeQuery("select * from quiz");
+
+            while (resultSet.next()) {
+
+                String id = resultSet.getString("idquiz");
+                String questiondb = resultSet.getString("question");
+                String correctdb = resultSet.getString("correct");
+                String sourcedb = resultSet.getString("source");
+
+                if(id.equalsIgnoreCase(numberQ)) {
+                    this.info = new EmbedBuilder();
+                    this.info.setTitle("Quiz");
+                    this.info.setDescription("Raspunde la intrebare trimitand raspunsul corect. Eg: 2");
+                    this.code = correctdb;
+                    this.source = sourcedb;
+                    this.info.addField("Intrebare", questiondb, false);
+                    for(int j = 1; j <= 4; j++){
+                        String subiectcautat = resultSet.getString("answer" + Integer.toString(j));
+                        this.info.addField("Intrebarea numarul " + Integer.toString(j), Integer.toString(j) + ")" +subiectcautat, false);
                     }
+                    this.info.setColor(0xffffff);
                 }
             }
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
@@ -94,36 +80,26 @@ public class Quiz implements ICommand {
         final TextChannel channel = ctx.getChannel();
         System.out.println(code);
 
-        channel.sendMessage(info.build()).queue((message) -> {
+        channel.sendMessage(this.info.build()).queue((message) -> {
             this.waiter.waitForEvent(
                 GuildMessageReceivedEvent.class,
                 e -> e.getAuthor().equals(event.getAuthor())
                      && e.getChannel().equals(event.getChannel())
                      && !e.getMessage().equals(event.getMessage()),
                 (e) -> {
-                    if(e.getMessage().getContentRaw().equalsIgnoreCase(code)){
-                        channel.sendMessage("Uraaa! Ai raspuns corect! " + e.getAuthor().getAsMention()).queue();
+                    if(e.getMessage().getContentRaw().equalsIgnoreCase(this.code)){
+                        channel.sendMessage("Uraaa! Ai raspuns corect! \uD83E\uDD73 " + e.getAuthor().getAsMention()).queue();
                     }
                     else {
-                        channel.sendMessage("Raspuns gresit! \uD83D\uDE25 " + e.getAuthor().getAsMention()).queue();
+                        channel.sendMessage("Raspuns gresit! \uD83D\uDE25 " + e.getAuthor().getAsMention() + " Documentatie: " + this.source).queue();
                     }
                 },
-                10, TimeUnit.SECONDS,
+                15, TimeUnit.SECONDS,
                 () -> channel.sendMessage("Timpul a expirat! ⏰").queue()
                                     );
         });
 
     }
-
-        /**
-        if(unicode.equalsIgnoreCase(this.code)){
-            channel.sendMessage("Uraaa! Ai raspuns corect!").queue();
-        }
-        else {
-            channel.sendMessage("Raspuns gresit! :(").queue();
-        }
-    }
-         */
 
     @Override
     public String getName() {

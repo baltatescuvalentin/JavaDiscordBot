@@ -1,19 +1,10 @@
-import java.io.File;
-import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import me.duncte123.botcommons.commands.ICommandContext;
-import net.dv8tion.jda.api.JDA;
+import java.sql.Connection;
 import net.dv8tion.jda.api.entities.TextChannel;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+
 
 public class Questions implements ICommand {
 
@@ -35,45 +26,35 @@ public class Questions implements ICommand {
 
         System.out.println(question);
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
 
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            Connection connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/questionsdb", "root", "Varsator123B");
 
-            Document document = builder.parse(new File("intrebari.xml"));
+            Statement statement = connection.createStatement();
 
-            document.getDocumentElement().normalize();
+            ResultSet resultSet = statement.executeQuery("select * from questions");
 
-            NodeList subiect = document.getElementsByTagName("subject");
-
-            for (int i = 0; i < subiect.getLength(); i++) {
-                Node sub = subiect.item(i);
-                if (sub.getNodeType() == Node.ELEMENT_NODE) {
-                    Element subInferior = (Element) sub;
-                    String id = subInferior.getAttribute("q");
-                    String intrebare = subInferior.getElementsByTagName("question").item(0).getTextContent();
-                    String raspuns = subInferior.getElementsByTagName("answer").item(0).getTextContent();
-
-                    if(question.toString().equalsIgnoreCase(intrebare)){
-                        gasit = true;
-                        System.out.println(id + "/" + intrebare + "/" + raspuns);
-                        channel.sendTyping().queue();
-                        channel.sendMessage(raspuns).queue();
-                    }
+            while (resultSet.next()) {
+                //System.out.println(resultSet.getString("question") + " " + resultSet.getString("answer"));
+                String id = resultSet.getString("idquestion");
+                String questiondb = resultSet.getString("question");
+                String answerdb = resultSet.getString("answer");
+                if(question.toString().equalsIgnoreCase(questiondb)){
+                    gasit = true;
+                    System.out.println(id + "/" + questiondb + "/" + answerdb);
+                    channel.sendTyping().queue();
+                    channel.sendMessage(answerdb).queue();
                 }
             }
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            if(gasit == false){
+                channel.sendTyping().queue();
+                channel.sendMessage("Nu stiu sa raspund! \uD83D\uDE25").queue();
+            }
 
-        if(gasit == false){
-            channel.sendTyping().queue();
-            channel.sendMessage("Nu stiu sa raspund! :(").queue();
+        } catch(Exception e){
+            e.printStackTrace();
         }
     }
 
