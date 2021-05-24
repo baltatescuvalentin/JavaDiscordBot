@@ -38,7 +38,7 @@ public class Listener extends ListenerAdapter {
         String raw = event.getMessage().getContentRaw();
         String prefix = "!";
 
-        if(raw.equalsIgnoreCase(prefix + "shutdown") && user.getId().equals("320440948200964096")) {
+        if(raw.equalsIgnoreCase(prefix + "shutdown") && user.getId().equals("")) {
             LOGGER.info("shutdown");
             event.getJDA().shutdown();
             BotCommons.shutdown(event.getJDA());
