@@ -13,7 +13,7 @@ public class Main {
 
         EventWaiter waiter = new EventWaiter();
 
-        JDA jda = JDABuilder.createDefault("ODM2NjAxMTM1MjA0MTM5MDQ4.YIgXhQ.cKCp6tEbPYuEPdAoztmiX7uB-R0",
+        JDA jda = JDABuilder.createDefault("",
                                            GatewayIntent.GUILD_MEMBERS,
                                            GatewayIntent.GUILD_MESSAGES,
                                            GatewayIntent.GUILD_VOICE_STATES).disableCache(EnumSet.of(
